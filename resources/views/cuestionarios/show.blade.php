@@ -8,14 +8,6 @@
 	<div class="form-titulo">
 		<center><span>Cuestionario - Encuesta '{{ $cuestionario->encuesta()->nombre }}'</span></center>
 	</div>
-	@if( session()->has('info') )
-		<div class="info {{ session('tipo') }} texto-centrar" >
-			<span>{{ session('info') }}</span>
-		</div>
-	@endif
-	<form class="formCuestionario" action="{{ route('cuestionarios.update', ['id' => $cuestionario->id]) }}" method="POST">
-		<input name="_method" type="hidden" value="PUT">
-		{{ csrf_field() }}
 		<div class="conjunto-grupo ">
 			<div class="form-grupo borde">
 				<div class="form-renglon flex flex-justificar">
@@ -26,7 +18,7 @@
 					</div>
 					<div class="form-columna ancho-1-3">
 						<label class="form-label" for="">Encuestador</label>
-						<input class="form-input ancho-100" name="encuestador" type="text" value="{{ $user->name or old('encuestador') }}" readonly="true">
+						<input class="form-input ancho-100" name="encuestador" type="text" value="{{ $user->name or old('encuestador') }}" readonly="true" readonly="true">
 						<span class="form-error">{{ $errors->first('encuestador') }}</span>
 					</div>
 				</div>
@@ -34,14 +26,14 @@
 				<div class="form-renglon flex flex-justificar">
 					<div class="form-columna ancho-2-3">
 						<label class="form-label" for="">Cliente</label>
-						<input class="form-input ancho-100" name="cliente" type="text" value="{{ $cuestionario->cliente or old('cliente') }}">
+						<input class="form-input ancho-100" name="cliente" type="text" value="{{ $cuestionario->cliente or old('cliente') }}" readonly="true">
 						<span class="form-error">{{ $errors->first('cliente') }}</span>
 					</div>
 					<div class="form-columna ancho-1-3">
 						<label class="form-label" for="">Estado</label>
-						<select class="form-select select-estado" name="estado" id="">
-							<option value="0" {{ ($cuestionario->estado == 0) ? 'selected' : ''}}>Pendiente</option>
-							<option value="1" {{ ($cuestionario->estado == 1) ? 'selected' : '' }}>Terminado</option>
+						<select class="form-select select-estado" name="estado" id="" readonly="true">
+							<option value="0" {{ ($cuestionario->estado == 0) ? 'selected' : ''}} disabled="true">Pendiente</option>
+							<option value="1" {{ ($cuestionario->estado == 1) ? 'selected' : '' }} disabled="true">Terminado</option>
 						</select>
 					</div>
 				</div>
@@ -72,11 +64,11 @@
 										<td class="{{ $col2 }}">{{ $respuesta->formato }}</td>
 										<td class="{{ $col3 }} texto-centrar">
 											<select class="form-select form-respuesta ancho-80" data-ponderacion="{{ $respuesta->ponderacion }}" name="respuestas[{{ $respuesta->id }}][]">
-												<option value="0"></option>
+												<option value="0" disabled="true"></option>
 												@foreach($valores as $valor)
 													@if($respuesta->formato_id == $valor->formatos_respuesta_id)
 														<option value="{{ $valor->id }}" data-valor="{{ $valor->valor }}"
-																{{ ($valor->id == $respuesta->valor_id) ? 'selected' : '' }} >
+																{{ ($valor->id == $respuesta->valor_id) ? 'selected' : '' }} disabled="true">
 															{{ $valor->respuesta }}
 														</option>
 													@endif
@@ -99,14 +91,8 @@
 				<div class="form-renglon flex">
 					<div class="form-columna ancho-50">
 						{{-- <a   href="{{ route('cuestionarios.index') }}">CANCELAR</a> --}}
-						<input class="form-btn btn-cancelar" onclick="history.back()" type="text" value="CANCELAR">
-
+						<input class="form-btn btn-cancelar" onclick="history.back()" type="text" value="Volver">
 					</div>
-					@if(!session()->has('info') )
-						<div class="form-columna ancho-50 texto-derecha">
-							<input class="form-btn btn-guardar" type="submit" value="{{ $btnText or 'GUARDAR' }}">
-						</div>
-					@endif
 				</div>
 			</div>
 		</div>

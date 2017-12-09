@@ -309,7 +309,7 @@
 	height: 40px;
 	width: 100%;
 	display: block;
-	background: yellow;
+	/*background: yellow;*/
 }
 
 .btn_app, .btn_usuario {

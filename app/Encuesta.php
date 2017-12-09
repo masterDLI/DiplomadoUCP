@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Cuestionario;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -17,5 +18,10 @@ class Encuesta extends Model
     public function resultados()
     {
     	return $this->hasMany('App\Resultado')->get();
+    }
+
+    public function cuestionarios()
+    {
+    	return $this->hasMany(Cuestionario::class)->get();
     }
 }

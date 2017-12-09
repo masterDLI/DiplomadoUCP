@@ -71,3 +71,8 @@ Route::resource('usuarios','UsersController');
 Route::get('resetpass/{id}',['as'=>'resetpass', 'uses'=>'UsuariosResetPassController@blanquear']);
 Route::resource('aplicaciones', 'AplicacionesController');
 Route::resource('cuestionarios', 'CuestionariosController');
+
+Route::get('listado_cuestionarios',['as'=>'listado', 'uses'=>'CuestionariosController@listado']);
+Route::get('estadistica_cuestionarios',['as'=>'estadistica', 'uses'=>'CuestionariosController@estadistica']);
+
+Route::resource('notificaciones','NotificacionesController');

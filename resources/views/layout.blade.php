@@ -14,16 +14,24 @@
 	<script src="https://file.myfontastic.com/6CRLECjnYdYKU5BvcK7cQA/icons.js"></script>
 
 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-	<script src="/js/script_ppal.js"></script>
 
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.css">
+
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/series-label.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+    <!-- Styles -->
+{{--     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
 </head>
 <body>
 
 	<img class="img-fondo" src="/imagenes/fondo.jpg" alt="">
-
 	<div class="cuerpo" >
 		@if(auth()->check())
 			@php($user = Auth::user())
@@ -33,6 +41,20 @@
 		@endif
 		@include('menu_lateral_izquierda')
 
+
+
+		<div class="contenido-relleno-cabecera"></div>
+
+		<div class="scrollbar contenido-ppal" id="style-5" >
+
+			<div class="contenedor-ppal-volver ">
+				<span class="btn-ppal-volver" href="" onclick="history.back()">
+					<img class="btn-ppal-volver-icono" src="/imagenes/iconos/icono-volver.svg">
+					<div class="btn-ppal-volver-escrito">Página Anterior</div>
+				</span>
+			</div>
+			@yield('contenido')
+		</div>
 		<div class="cabecera flex">
 			<div class="ancho-1-3 flex" >
 				<a class="flex flex-justificar" href="" id="mostrar_menu_lateral">
@@ -51,8 +73,10 @@
 					<img class="img_logo_proceso" src="/imagenes/logo-empresa.png" alt="">
 				</a>
 			</div>
-			<div class="zona_usuario ancho-1-3 flex flex-derecha"  >
-
+			<div class="zona_usuario ancho-1-3 flex flex-derecha">
+				<div id="app">
+					<notificaciones></notificaciones>
+				</div>
 				<div class="btn_usuario zona_usuario_nombre" href="">
 
 					<div class="circulo-usuario">
@@ -83,22 +107,11 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
+		 <script src="/js/script_ppal.js"></script>
+		 <script src="{{ asset('js/app.js') }}"></script>
 
-		<div class="contenido-relleno-cabecera"></div>
 
-		<div class="scrollbar contenido-ppal" id="style-5" >
-
-			<div class="contenedor-ppal-volver ">
-				<span class="btn-ppal-volver" href="" onclick="history.back()">
-					<img class="btn-ppal-volver-icono" src="/imagenes/iconos/icono-volver.svg">
-					<div class="btn-ppal-volver-escrito">Página Anterior</div>
-				</span>
-			</div>
-
-			@yield('contenido')
-		</div>
 
 </body>
 </html>

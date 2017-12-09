@@ -2,7 +2,7 @@
 
 @section('contenido')
 
-<div class="zona-formulario ancho-50 margen-auto borde s-100">
+<div class="zona-formulario ancho-70 margen-auto borde s-100">
 	<div class="form-titulo">
 		<center><span>Editar Encuesta '{{ $encuesta->nombre }}'</span></center>
 	</div>

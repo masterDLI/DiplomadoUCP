@@ -127,6 +127,8 @@
 
 	.btn-cancelar {
 		color: #E20613;
+		border: none;
+		background: white;
 	}
 
 	.form-error{
@@ -234,6 +236,13 @@ tbody tr:hover {
   display: flex;
 }
 
+.table-fixed tfoot tr{
+	padding-right: 3px;
+	border-bottom: 0px solid #000000;
+}
+.table-fixed tfoot tr td:last-child{
+	border-right: none;
+}
 
 .table-fixed thead::-webkit-scrollbar
 {

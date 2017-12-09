@@ -24,13 +24,13 @@
 					<tr>
 						<td class="{{ $col1 }}">{{ $encuesta->nombre }}</td>
 						<td class="{{ $col2 }} texto-centrar">
-							<a href="">
+							<a href="{{ route('listado', ['encuesta'=>$encuesta->id]) }}">
 								<svg class="icon-search">
 									<use xlink:href="#icon-search"></use>
 								</svg>
 							</a></td>
 						<td class="{{ $col3 }} texto-centrar">
-							<a class="es-link" href="{{ route('encuestas.edit', $encuesta->id) }}">
+							<a class="es-link" href="{{ route('estadistica', ['encuesta'=>$encuesta->id]) }}">
 								<svg class="icon-line-chart">
 									<use xlink:href="#icon-line-chart"></use>
 								</svg>

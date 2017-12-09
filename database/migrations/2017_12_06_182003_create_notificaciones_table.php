@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearCuestionariosTabla extends Migration
+class CreateNotificacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CrearCuestionariosTabla extends Migration
      */
     public function up()
     {
-        Schema::create('cuestionarios', function (Blueprint $table) {
+        Schema::create('Notificaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('encuesta_id')->unsigned();
-            $table->foreign('encuesta_id')->references('id')->on('encuestas');
+            $table->string('url')->nullable();
             $table->integer('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('users');
             $table->string('cliente')->nullable();
-            $table->string('valor_resultado')->nullable();
-            $table->integer('resultado_id')->nullable()->unsigned();
-            $table->foreign('resultado_id')->references('id')->on('resultados');
-            $table->boolean('estado');
+            $table->string('encuesta')->nullable();
+            $table->string('resultado')->nullable();
+            $table->string('encuestador')->nullable();
+            $table->integer('leido')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
+
     }
 
     /**
@@ -36,6 +36,6 @@ class CrearCuestionariosTabla extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuestionarios');
+        Schema::dropIfExists('Notificaciones');
     }
 }
